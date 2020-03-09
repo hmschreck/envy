@@ -47,3 +47,37 @@ func TestGetEnvIntNonInt(t *testing.T) {
 		t.Error("Did not receive error when should have")
 	}
 }
+
+func TestGetEnvBool(t *testing.T) {
+	os.Setenv("TEST_BOOL", "TRUE")
+	result := GetEnvBool("TEST_BOOL", "")
+	assert.Equal(t, result, true)
+}
+
+func TestGetEnvBool2(t *testing.T) {
+	os.Setenv("TEST_BOOL", "true")
+	result := GetEnvBool("TEST_BOOL", "")
+	assert.Equal(t, result, true)
+}
+
+func TestGetEnvBool3(t *testing.T) {
+	os.Setenv("TEST_BOOL", "YES")
+	result := GetEnvBool("TEST_BOOL", "")
+	assert.Equal(t, result, true)
+}
+
+func TestGetEnvBool4(t *testing.T) {
+	os.Setenv("TEST_BOOL", "yes")
+	result := GetEnvBool("TEST_BOOL", "")
+	assert.Equal(t, result, true)
+}
+
+func TestGetEnvBool5(t *testing.T) {
+	result := GetEnvBool("NOT_A_THING", "TRUE")
+	assert.Equal(t, result, true)
+}
+
+func TestGetEnvBool6(t *testing.T) {
+	result := GetEnvBool("NOT_A_THING", "")
+	assert.Equal(t, result, false)
+}

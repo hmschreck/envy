@@ -19,3 +19,14 @@ func GetEnvInt(env_key, fallback string) (env int, err error) {
 	}
 	return
 }
+
+// returns a boolean value
+// Any value that isn't YES, yes, TRUE, or true will return as false
+func GetEnvBool(env_key, fallback string) (env bool) {
+	env = false
+	env_read := GetEnv(env_key, fallback)
+	if env_read == "YES" || env_read == "yes" || env_read == "TRUE" || env_read == "true" {
+		env = true
+	}
+	return
+}
