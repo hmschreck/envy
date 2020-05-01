@@ -81,3 +81,14 @@ func TestGetEnvBool6(t *testing.T) {
 	result := GetEnvBool("NOT_A_THING", "")
 	assert.Equal(t, result, false)
 }
+
+func TestGetEnvFloat(t *testing.T) {
+	os.Setenv("TEST_FLOAT", "0.90")
+	result, _ := GetEnvFloat("TEST_FLOAT", "0.7")
+	assert.Equal(t, result, 0.9)
+}
+
+func TestGetEnvFloat2(t *testing.T) {
+	result, _ := GetEnvFloat("TEST_FLOAT2", "0.7")
+	assert.Equal(t, result, 0.7)
+}

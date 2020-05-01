@@ -30,3 +30,8 @@ func GetEnvBool(env_key, fallback string) (env bool) {
 	}
 	return
 }
+
+func GetEnvFloat(env_key, fallback string) (env float64, err error) {
+	env, err = strconv.ParseFloat(GetEnv(env_key, fallback), 64)
+	return
+}
